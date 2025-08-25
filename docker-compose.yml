@@ -14,21 +14,17 @@ services:
       - 15672:15672
       - 5672:5672
 
-  orders:
+  order-service:
     image: somkiat/orders-service-api:1.0
     container_name: orders-service
     build:
       context: ./ms-order-service
       dockerfile: Dockerfile
     ports:
-      - "7501:7501"
-    depends_on:
-      - discovery
-      - books
-    links:
-      - discovery
-      - logstash
-      - zipkin
+      - "8080:8080"
+    environment:
+      - MONGODB_HOST=mongodb
+      - RABBITMQ_HOST=rabbitmq
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
@@ -124,12 +120,6 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    links:
-      - discovery
-      - gateway
-      - books
-      - orders
-      - params
 
   grafana:
     image: grafana/grafana

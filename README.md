@@ -77,20 +77,22 @@ docker compose up -d mongodb
 Build all projects with Apache Maven
 
 ```
-mvn clean package
+mvn clean install
 ```
 
 ### Build Docker images
 ```
-docker compose build
+docker compose build order-service
+docker compose build payment-service
+docker compose build product-service
 ```
 
 ### Run as a container
 
 ```
-docker compose up -d
+docker compose up -d order-service
 ```
 
 ## OpenApi for each services
-- **ms-order-service** : http://localhost:7500/swagger-ui.html
-- **ms-product-service** : http://localhost:7501/swagger-ui.html
+- **order-service** : http://localhost:8080/swagger-ui.html
+- **product-service** : http://localhost:8081/swagger-ui.html
