@@ -83,8 +83,8 @@ mvn clean install
 ### Build Docker images
 ```
 docker compose build order-service
-docker compose build payment-service
 docker compose build product-service
+docker compose build payment-service
 ```
 
 ### Run as a container
@@ -92,6 +92,7 @@ docker compose build product-service
 ```
 docker compose up -d order-service
 docker compose up -d product-service
+docker compose up -d payment-service
 ```
 
 ## OpenApi for each services

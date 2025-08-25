@@ -37,6 +37,18 @@ services:
       - MONGODB_HOST=mongodb
       - RABBITMQ_HOST=rabbitmq
 
+  payment-service:
+    image: somkiat/orders-service-api:1.0
+    container_name: payment-service
+    build:
+      context: ./ms-payment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      - MONGODB_HOST=mongodb
+      - RABBITMQ_HOST=rabbitmq
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: service-elasticsearch
