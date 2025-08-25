@@ -16,8 +16,8 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.shopping</groupId>
-            <artifactId>commons</artifactId>
+            <groupId>com</groupId>
+            <artifactId>lib-commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

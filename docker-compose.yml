@@ -1,5 +1,34 @@
-version: '3.7'
 services:
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+  orders:
+    image: somkiat/orders-service-api:1.0
+    container_name: orders-service
+    build:
+      context: ./ms-order-service
+      dockerfile: Dockerfile
+    ports:
+      - "7501:7501"
+    depends_on:
+      - discovery
+      - books
+    links:
+      - discovery
+      - logstash
+      - zipkin
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
@@ -85,49 +114,6 @@ services:
       - logstash
       - zipkin
 
-  books:
-    image: lmgm/books-service-api
-    container_name: books-service
-    build:
-      context: ./books-service
-      dockerfile: Dockerfile
-    ports:
-      - "7500:7500"
-    links:
-      - discovery
-      - logstash
-      - zipkin
-
-  orders:
-    image: lmgm/orders-service-api
-    container_name: orders-service
-    build:
-      context: ./orders-service
-      dockerfile: Dockerfile
-    ports:
-      - "7501:7501"
-    depends_on:
-      - discovery
-      - books
-    links:
-      - discovery
-      - logstash
-      - zipkin
-
-  params:
-    image: lmgm/params-service-api
-    container_name: params-service
-    build:
-      context: ./params-service
-      dockerfile: Dockerfile
-    ports:
-    - "7502:7502"
-    depends_on:
-      - discovery
-    links:
-      - discovery
-      - logstash
-      - zipkin
 
   prometheus:
     image: prom/prometheus:latest

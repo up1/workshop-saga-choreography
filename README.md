@@ -1,6 +1,7 @@
 # Shopping Application 
-* Spring Boot
-* MongoDB 
+* Spring Boot 3
+* Java 21
+* MongoDB
 * RabbitMQ
 
 ## Overview ##
@@ -51,18 +52,23 @@ Order Completion:
 | Products | /v1/products/{id}                      | 7501  |  PUT   | Update a specific product                       |
 | Products | /v1/products/{id}                      | 7501  | DELETE | Delete a specific product                       |
 
-### Documentation and examples ###
 
-#### OpenApi
+## RabbitMQ
+Start server
+```
+docker compose up -d rabbitmq
+```
 
-- **ms-order-service** : http://localhost:7500/swagger-ui.html
-- **ms-product-service** : http://localhost:7501/swagger-ui.html
-
-## RabbitMQ:
 You can open RabbitMQ
-* http://localhost:5672/
-* username=guest
-* password=guest
+* http://localhost:15672/
+    * username=guest
+    * password=guest
+
+## MongoDB
+Start server
+```
+docker compose up -d mongodb
+```
 
 ## Build & Run
 
@@ -85,8 +91,6 @@ docker compose build
 docker compose up -d
 ```
 
-## Technologies Used
-* Spring Boot
-* Java 21
-* MongoDB
-* RabbitMQ
+## OpenApi for each services
+- **ms-order-service** : http://localhost:7500/swagger-ui.html
+- **ms-product-service** : http://localhost:7501/swagger-ui.html

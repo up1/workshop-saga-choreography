@@ -24,6 +24,7 @@
     </properties>
 
     <modules>
+        <module>lib-commons</module>
         <module>ms-order-service</module>
         <module>ms-payment-service</module>
         <module>ms-product-service</module>
@@ -70,6 +71,28 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Or a newer version -->
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.38</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -81,5 +104,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
 
 </project>
