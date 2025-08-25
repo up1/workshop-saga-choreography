@@ -91,6 +91,7 @@ docker compose build product-service
 
 ```
 docker compose up -d order-service
+docker compose up -d product-service
 ```
 
 ## OpenApi for each services

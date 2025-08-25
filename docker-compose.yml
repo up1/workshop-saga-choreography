@@ -25,6 +25,17 @@ services:
     environment:
       - MONGODB_HOST=mongodb
       - RABBITMQ_HOST=rabbitmq
+  product-service:
+    image: somkiat/orders-service-api:1.0
+    container_name: product-service
+    build:
+      context: ./ms-product-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      - MONGODB_HOST=mongodb
+      - RABBITMQ_HOST=rabbitmq
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
