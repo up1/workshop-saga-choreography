@@ -72,11 +72,10 @@ Start server
 docker compose up -d mongodb
 ```
 
-## Build & Run
+## Build and Run services
 
-### Build
-
-Build all projects with Apache Maven
+### Build all projects with Apache Maven
+* Working with JDK 21
 
 ```
 mvn clean install
@@ -95,6 +94,9 @@ docker compose build payment-service
 docker compose up -d order-service
 docker compose up -d product-service
 docker compose up -d payment-service
+
+docker compose ps
+docker compose logs -f
 ```
 
 ## OpenApi for each services
