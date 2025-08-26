@@ -26,7 +26,7 @@ services:
       - MONGODB_HOST=mongodb
       - RABBITMQ_HOST=rabbitmq
   product-service:
-    image: somkiat/orders-service-api:1.0
+    image: somkiat/product-service-api:1.0
     container_name: product-service
     build:
       context: ./ms-product-service
@@ -38,7 +38,7 @@ services:
       - RABBITMQ_HOST=rabbitmq
 
   payment-service:
-    image: somkiat/orders-service-api:1.0
+    image: somkiat/payment-service-api:1.0
     container_name: payment-service
     build:
       context: ./ms-payment-service
