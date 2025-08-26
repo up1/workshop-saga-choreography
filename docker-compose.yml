@@ -7,12 +7,24 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://admin:admin@localhost:27017/?authSource=admin --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
   rabbitmq:
     image: rabbitmq:3.13-management
     ports:
       - 15672:15672
       - 5672:5672
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
   order-service:
     image: somkiat/orders-service-api:1.0
