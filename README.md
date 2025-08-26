@@ -7,12 +7,14 @@
 ## Overview ##
 This project is an e-commerce platform built using a microservices architecture. It consists of three core microservices:
 
-- **[Order Service](ms-order-service)**: Handles the creation and management of customer orders
-- **[Product Service](ms-product-service)**: Manages product information and inventory stock
-- **[Payment Service](ms-payment-service)**: Manages payment processing
+* [Order Service](ms-order-service)
+  * Handle the creation and management of customer's order
+* [Product Service](ms-product-service)
+  * Manage product information and inventory stock
+* [Payment Service](ms-payment-service)
+  * Manage payment processing
 
 ## Architecture ##
-
 Saga Choreography Pattern: Ensures data consistency across the microservices through distributed transactions.
 
 * Each microservice performs its operations and publishes events that trigger actions in other microservices.
@@ -43,14 +45,14 @@ Order Completion:
 
 | Service  | EndPoint                               | Port  | Method | Description                                     |
 |----------|----------------------------------------|:-----:|:------:|-------------------------------------------------|
-| Orders   | /v1/customers/{customerId}/orders      | 7500  |  POST  | Create an order                                 |
-| Orders   | /v1/customers/{customerId}/orders      | 7500  |  GET   | Return a list of orders for a specific customer |
-| Orders   | /v1/customers/{customerId}/orders/{id} | 7500  |  POST  | Return detail of specified order                |
-| Products | /v1/products/{id}                      | 7501  |  GET   | Return detail of specified product              |
-| Products | /v1/products                           | 7501  |  GET   | Return a list of products                       |
-| Products | /v1/products                           | 7501  |  POST  | Insert a new product                            |
-| Products | /v1/products/{id}                      | 7501  |  PUT   | Update a specific product                       |
-| Products | /v1/products/{id}                      | 7501  | DELETE | Delete a specific product                       |
+| Orders   | /v1/customers/{customerId}/orders      | 8080  |  POST  | Create an order                                 |
+| Orders   | /v1/customers/{customerId}/orders      | 8080  |  GET   | Return a list of orders for a specific customer |
+| Orders   | /v1/customers/{customerId}/orders/{id} | 8080  |  POST  | Return detail of specified order                |
+| Products | /v1/products/{id}                      | 8081  |  GET   | Return detail of specified product              |
+| Products | /v1/products                           | 8081  |  GET   | Return a list of products                       |
+| Products | /v1/products                           | 8081  |  POST  | Insert a new product                            |
+| Products | /v1/products/{id}                      | 8081  |  PUT   | Update a specific product                       |
+| Products | /v1/products/{id}                      | 8081  | DELETE | Delete a specific product                       |
 
 
 ## RabbitMQ
