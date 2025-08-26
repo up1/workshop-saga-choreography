@@ -30,7 +30,9 @@ public class OrderService {
   }
 
   public void save(OrderEntity entity, Payment payment) {
+    // 1. Insert into database
     repository.save(entity);
+    // 2. Send message to rabbitmq
     rabbitTemplate.convertAndSend(
         ORDER_CREATED_QUEUE, OrderEventMapper.toOrderCreatedEvent(entity, payment));
   }
